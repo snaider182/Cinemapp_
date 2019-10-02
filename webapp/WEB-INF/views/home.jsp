@@ -52,7 +52,18 @@
 							<td>${pelicula.genero}</td>
 							<td><fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/></td>
 							<td><img src="${urlPublic}/imagenes/${pelicula.imagen}" width="80" height="100"></td>
-							<td>${pelicula.estatus}</td>
+							<td>
+								<c:choose>
+									<c:when test="${pelicula.estatus == 'Activa'}">
+										<span class ="label label-success">ACTIVA</span>
+									</c:when>
+									<c:when test="${pelicula.estatus == 'Inactiva'}">
+										<span class ="label label-danger">INACTIVA</span>
+									</c:when>
+									
+								</c:choose>
+							
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
