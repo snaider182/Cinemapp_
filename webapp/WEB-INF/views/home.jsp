@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,7 @@
 							<td>${pelicula.duracion}</td>
 							<td>${pelicula.clasificacion}</td>
 							<td>${pelicula.genero}</td>
-							<td>${pelicula.fechaEstreno}</td>
+							<td><fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/></td>
 							<td><img src="${urlPublic}/imagenes/${pelicula.imagen}" width="80" height="100"></td>
 							<td>${pelicula.estatus}</td>
 						</tr>
