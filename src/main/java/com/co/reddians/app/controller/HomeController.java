@@ -61,13 +61,36 @@ public class HomeController {
 			Pelicula pelicula2 = new Pelicula();
 			pelicula2.setId(2);
 			pelicula2.setTitulo("Dead Pool");
-			pelicula2.setDuracion(130);
-			pelicula2.setClasificacion("A");
+			pelicula2.setDuracion(140);
+			pelicula2.setClasificacion("D");
 			pelicula2.setGenero("Accion");
 			pelicula2.setFechaEstreno(formatter.parse("12-04-2018"));
+			pelicula2.setImagen("Dead.png");
+			
+			
+			Pelicula pelicula3 = new Pelicula();
+			pelicula3.setId(3);
+			pelicula3.setTitulo("Titanes");
+			pelicula3.setDuracion(150);
+			pelicula3.setClasificacion("T");
+			pelicula3.setGenero("Accion");
+			pelicula3.setFechaEstreno(formatter.parse("14-06-2016"));
+			pelicula3.setImagen("Titanes.png");
+			
+			Pelicula pelicula4 = new Pelicula();
+			pelicula4.setId(4);
+			pelicula4.setTitulo("Koon");
+			pelicula4.setDuracion(110);
+			pelicula4.setClasificacion("K");
+			pelicula4.setGenero("Misterio");
+			pelicula4.setFechaEstreno(formatter.parse("25-03-2015"));
+			pelicula4.setImagen("Kong.png");
+			pelicula4.setEstatus("Inactiva");
 
 			lista.add(pelicula1);
 			lista.add(pelicula2);
+			lista.add(pelicula3);
+			lista.add(pelicula4);
 
 			return lista;
 		} catch (ParseException e) {
