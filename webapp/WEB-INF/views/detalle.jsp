@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Detalle de la Peilicula</title>
+<title>Detalle de la Pelicula</title>
 </head>
 <body>
-	<h1>Titulo de la pelicula ${titulo }</h1>
-	<h2>Duracion de la pelicula ${duracion } min</h2>
-	<h2>precio $ ${precio }</h2>
+	<h1>Titulo de la pelicula </h1>
+	<h2>Duracion de la pelicula  min</h2>
+	<h2>precio</h2>
 </body>
 </html>

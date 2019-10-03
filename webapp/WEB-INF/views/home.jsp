@@ -10,7 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>CineSite | Bienvenido</title>
-<spring:url value="/resources" var="urlPublic" />
+<spring:url value="/resources" var="urlPublic"></spring:url>
+<spring:url value="/" var="urlRoot"></spring:url>
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -19,7 +20,7 @@
 
 <body>
 
-<jsp:include page="includes/menu.jsp"></jsp:include>
+	<jsp:include page="includes/menu.jsp"></jsp:include>
 
 	<div class="container theme-showcase" role="main">
 
@@ -69,14 +70,14 @@
 				<h2 class="text text-center">
 					<span class="label label-success">EN CARTELERA</span>
 				</h2>
-				<form class="form-inline" action="#" method="post">
+				<form class="form-inline" action="${urlRoot }/search" method="post">
 					<div class="form-group">
-						<label for="fecha">Fecha: </label> <select id="fecha" name="fecha"
+						<label for="fecha">Fecha: </label> 
+						<select id="selFecha" name="fecha"
 							class="form-control">
-							<option value="01-05-2017">01-05-2017</option>
-							<option value="02-05-2017">02-05-2017</option>
-							<option value="03-05-2017">03-05-2017</option>
-							<option value="04-05-2017">04-05-2017</option>
+							<c:forEach items="${fechas }" var="fec">
+								<option value="${fec }">${fec }</option>
+							</c:forEach>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-primary">Filtrar</button>
@@ -84,28 +85,36 @@
 			</div>
 		</div>
 
-		<!-- Marketing messaging -->
-		<div class="container marketing">
 
-			<div class="row">
 
-				<c:forEach var="pelicula" items="${ peliculas}">
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<img class="img-rounded" src="${urlPublic}/imagenes/${pelicula.imagen}"
-							alt="Generic placeholder image" width="150" height="200">
-						<h4>${pelicula.titulo }</h4>
-						<h4>
-							<span class="label label-default">${pelicula.clasificacion }</span>
-							<span class="label label-default">${pelicula.duracion } min</span> <span
-								class="label label-default">${pelicula.genero }</span>
-						</h4>
-						<p>
-							<a class="btn btn-sm btn-primary" href="#" role="button">Consulta
-								Horarios &raquo;</a>
-						</p>
-					</div>
+		<div class="row">
 
-				</c:forEach>
+			<c:forEach var="pelicula" items="${ peliculas}">
+				<div class="col-xs-12 col-sm-6 col-md-3">
+					<img class="img-rounded"
+						src="${urlPublic}/imagenes/${pelicula.imagen}"
+						alt="Generic placeholder image" width="150" height="200">
+					<h4>${pelicula.titulo }</h4>
+					<h4>
+						<span class="label label-default">${pelicula.clasificacion }</span>
+						<span class="label label-default">${pelicula.duracion } min</span>
+						<span class="label label-default">${pelicula.genero }</span>
+					</h4>
+					<p>
+						<%-- 
+							<a class="btn btn-sm btn-primary" href="detail/${pelicula.id }/${fechaBusqueda}" role="button">ConsultaHorarios &raquo;</a>
+						--%>
+						<a class="btn btn-sm btn-primary"
+							href="detail?idMovie=${pelicula.id }&fecha=${fechaBusqueda}"
+							role="button">ConsultaHorarios &raquo;</a>
+
+					</p>
+				</div>
+
+			</c:forEach>
+
+			<!-- Marketing messaging -->
+			<div class="container marketing">
 
 				<div class="page-header">
 					<h2 class="text text-center">
@@ -128,14 +137,14 @@
 								La novela de Cynthia Swanson <span style="color: #0000ff;"><strong>The
 										Bookseller</strong></span> ser&aacute; llevada al cine con <span
 									style="color: #0000ff;">Julia Roberts (Los Pitufos: La
-									aldea Escondida)</span> como protagonista.<br />
-								<br />La historia est&aacute; ambientada en los sesenta y su
-								protagonista es una mujer soltera, Kitty Miller, que lleva una
-								librer&iacute;a. Sue&ntilde;a con una vida alternativa en la que
-								ha encontrado el amor y est&aacute; casada y con hijos, pero la
-								l&iacute;nea que separa realidad y ficci&oacute;n comienza a
-								estar demasiado dispersa para que la distinga.<br />
-								<br />Seg&uacute;n informa <span style="color: #ff0000;"><strong>Moviehole</strong></span>
+									aldea Escondida)</span> como protagonista.<br /> <br />La historia
+								est&aacute; ambientada en los sesenta y su protagonista es una
+								mujer soltera, Kitty Miller, que lleva una librer&iacute;a.
+								Sue&ntilde;a con una vida alternativa en la que ha encontrado el
+								amor y est&aacute; casada y con hijos, pero la l&iacute;nea que
+								separa realidad y ficci&oacute;n comienza a estar demasiado
+								dispersa para que la distinga.<br /> <br />Seg&uacute;n
+								informa <span style="color: #ff0000;"><strong>Moviehole</strong></span>
 								Roberts tambi&eacute;n producir&aacute; la pel&iacute;cula junto
 								a Lisa Gillan y Marisa Yeres Hill.
 							</p>
@@ -176,20 +185,19 @@
 
 							<hr class="featurette-divider">
 						</div>
-
 					</div>
 				</div>
-
 			</div>
+			<jsp:include page="includes/footer.jsp"></jsp:include>
+		</div>
+	</div>
+	<!-- /container -->
 
-		<jsp:include page="includes/footer.jsp"></jsp:include>
-		<!-- /container -->
-
-		<!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
